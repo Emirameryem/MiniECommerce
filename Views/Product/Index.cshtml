@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MiniECommerce.Models.Product>
+
+<h2>Ürünler</h2>
+
+<div style="display:flex; flex-wrap:wrap;">
+    @foreach (var item in Model)
+    {
+        <div style="border:1px solid #ccc; padding:10px; margin:10px; width:200px;">
+            <img src="@item.ImageUrl" width="180" />
+            <h3>@item.Name</h3>
+            <p>@item.Description</p>
+            <strong>@item.Price ₺</strong><br />
+
+            <button onclick="addToCart(this)">Sepete Ekle</button>
+            <span style="display:none; color:green;">✔ Sepete eklendi</span>
+        </div>
+    }
+</div>
+
+<script>
+    function addToCart(button) {
+        button.disabled = true;
+        button.style.backgroundColor = "#ccc";
+        button.innerText = "Eklendi";
+
+        const span = button.nextElementSibling;
+        if (span) {
+            span.style.display = "inline";
+        }
+    }
+</script>
